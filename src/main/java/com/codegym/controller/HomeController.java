@@ -18,4 +18,16 @@ public class HomeController {
         return "about";
     }
 
+    @GetMapping("blog")
+    public String blog(){
+        return "blog";
+    }
+
+    @GetMapping("blog/details")
+    public String blogDetail(){
+        return "blog_details";
+    }
+
+
+
 }
