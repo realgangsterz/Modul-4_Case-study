@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.format.FormatterRegistry;
@@ -26,6 +27,7 @@ import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 
+import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -37,7 +39,10 @@ import java.util.Properties;
 @ComponentScan("com.codegym")
 @EnableJpaRepositories("com.codegym.repository")
 @EnableSpringDataWebSupport
+//@PropertySource("classpath:application.properties")
 public class ApplicationConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
+    @Resource
+    public Environment env;
 
     private ApplicationContext applicationContext;
 
@@ -103,10 +108,10 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/cms?allowPublicKeyRetrieval=true&useSSL=false");
-        dataSource.setUsername( "root" );
-        dataSource.setPassword( "kieuanhxinh" );
+        dataSource.setDriverClassName(env.getProperty("driverClassName"));
+        dataSource.setUrl(env.getProperty("jdbcUrl"));
+        dataSource.setUsername( env.getProperty("jdbcUsername") );
+        dataSource.setPassword( env.getProperty("jdbcPassword") );
         return dataSource;
     }
 
