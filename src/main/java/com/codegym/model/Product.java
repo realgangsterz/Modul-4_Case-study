@@ -37,13 +37,12 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @OneToMany(targetEntity = OrderDetail.class)
-    private List<OrderDetail> orderDetails;
+
 
     public Product() {
     }
 
-    public Product(Long productId, @NotEmpty String productName, @NotEmpty String productPrice, Producer producer, @NotEmpty String discount, @NotEmpty String productPhoto, @NotEmpty String amount, @NotEmpty Long shopping, Category category, List<OrderDetail> orderDetails) {
+    public Product(Long productId, @NotEmpty String productName, @NotEmpty String productPrice, Producer producer, @NotEmpty String discount, @NotEmpty String productPhoto, @NotEmpty String amount, @NotEmpty Long shopping, Category category){
         this.productId = productId;
         this.productName = productName;
         this.productPrice = productPrice;
@@ -53,7 +52,7 @@ public class Product {
         this.amount = amount;
         this.shopping = shopping;
         this.category = category;
-        this.orderDetails = orderDetails;
+
     }
 
     public Long getProductId() {
@@ -128,11 +127,5 @@ public class Product {
         this.category = category;
     }
 
-    public List<OrderDetail> getOrderDetails() {
-        return orderDetails;
-    }
 
-    public void setOrderDetails(List<OrderDetail> orderDetails) {
-        this.orderDetails = orderDetails;
-    }
 }

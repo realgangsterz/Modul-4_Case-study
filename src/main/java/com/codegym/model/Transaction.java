@@ -39,9 +39,6 @@ public class Transaction {
     @NotEmpty
     private String customer_created;
 
-    @OneToMany(targetEntity = Order.class)
-    private List<Order> orders;
-
     public Transaction() {
     }
 
