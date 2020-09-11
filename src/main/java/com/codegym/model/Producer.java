@@ -14,16 +14,12 @@ public class Producer {
     @NotEmpty
     private String producerName;
 
-    @OneToMany(targetEntity = Product.class)
-    private List<Product> products;
-
     public Producer() {
     }
 
-    public Producer(Long producerId, @NotEmpty String producerName, List<Product> products) {
+    public Producer(Long producerId, @NotEmpty String producerName) {
         this.producerId = producerId;
         this.producerName = producerName;
-        this.products = products;
     }
 
     public Long getProducerId() {
@@ -42,11 +38,4 @@ public class Producer {
         this.producerName = producerName;
     }
 
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
 }

@@ -30,14 +30,10 @@ public class Customer {
 
     @NotEmpty
     private String address;
-
-    @OneToMany(targetEntity = Order.class)
-    private List<Order> orders;
-
     public Customer() {
     }
 
-    public Customer(Long customerId, @NotEmpty String firstName, @NotEmpty String lastName, @NotEmpty @Email String email, @NotEmpty String password, @NotEmpty Long phoneNumber, @NotEmpty String address, List<Order> orders) {
+    public Customer(Long customerId, @NotEmpty String firstName, @NotEmpty String lastName, @NotEmpty @Email String email, @NotEmpty String password, @NotEmpty Long phoneNumber, @NotEmpty String address) {
         this.customerId = customerId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -45,7 +41,6 @@ public class Customer {
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.address = address;
-        this.orders = orders;
     }
 
     public Long getCustomerId() {
@@ -104,11 +99,4 @@ public class Customer {
         this.address = address;
     }
 
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
 }

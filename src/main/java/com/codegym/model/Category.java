@@ -14,17 +14,14 @@ public class Category {
     @NotEmpty
     private String categoryName;
 
-    @OneToMany(targetEntity = Product.class)
-    private List<Product> products;
-
 
     public Category() {
     }
 
-    public Category(Long categoryId, @NotEmpty String categoryName, List<Product> products) {
+    public Category(Long categoryId, @NotEmpty String categoryName) {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
-        this.products = products;
+
     }
 
     public Long getCategoryId() {
@@ -43,11 +40,4 @@ public class Category {
         this.categoryName = categoryName;
     }
 
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
 }

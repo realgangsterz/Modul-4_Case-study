@@ -11,8 +11,6 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long orderId;
 
-    @OneToMany(targetEntity = OrderDetail.class)
-    private List<OrderDetail> orderDetails;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
@@ -24,9 +22,8 @@ public class Order {
     public Order() {
     }
 
-    public Order(Long orderId, List<OrderDetail> orderDetails, Customer customer, @NotEmpty String orderDate) {
+    public Order(Long orderId, Customer customer, @NotEmpty String orderDate) {
         this.orderId = orderId;
-        this.orderDetails = orderDetails;
         this.customer = customer;
         this.orderDate = orderDate;
     }
@@ -39,15 +36,7 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public List<OrderDetail> getOrderDetails() {
-        return orderDetails;
-    }
-
-    public void setOrderDetails(List<OrderDetail> orderDetails) {
-        this.orderDetails = orderDetails;
-    }
-
-    public Customer getCustomer() {
+     public Customer getCustomer() {
         return customer;
     }
 
